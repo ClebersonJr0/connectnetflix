@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #212121;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #616161;
+        }
+        .countdown {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: green;
+        }
+        .countdown span {
+            font-weight: bold;
+        }
+        a.button {
+            display: inline-block;
+            background-color: #25d366;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        a.button:hover {
+            background-color: #128c7e;
+        }
+        .redirect-card {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .redirect-card a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .redirect-card a:hover {
+            text-decoration: underline;
+        }
+        .whatsapp-logo {
+            vertical-align: middle;
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    	<h1>Connect</h1>
+        <h2>Você será redirecionado para o WhatsApp em</h2>
+        <div class="countdown">
+            <span id="countdown">5</span>
+        </div>
+        <div class="redirect-card">
+            Não foi redirecionado automaticamente? <a href="#" id="manual-redirect">Toque aqui!</a>
+        </div>
+        <script>
+            function countdown() {
+                var seconds = 5;
+                var countdownElement = document.getElementById("countdown");
+                var countdownInterval = setInterval(function() {
+                    seconds--;
+                    countdownElement.textContent = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        var currentDate = new Date();
+                        var currentHour = currentDate.getHours();
+                        var currentDay = currentDate.getDay();
+                        var whatsappURL;
+                        
+                        // Altere os números de telefone dependendo do horário e do dia da semana
+                        if ((currentHour >= 19 || currentDay === 0 || currentDay === 6) && (currentHour < 24)) {
+                            whatsappURL = "https://wa.me/+553399973342?text=Ol%C3%A1%2C+tenho+interesse+em+um+Cart%C3%A3o+Pr%C3%A9-pago+Netflix";
+                        } else {
+                            whatsappURL = "https://wa.me/+553399380674";
+                        }
+                        
+                        window.location.href = whatsappURL;
+                    }
+                }, 1000);
+            }
+            countdown();
+
+            document.getElementById("manual-redirect").onclick = function() {
+                var currentDate = new Date();
+                var currentHour = currentDate.getHours();
+                var currentDay = currentDate.getDay();
+                var whatsappURL;
+                
+                // Altere os números de telefone dependendo do horário e do dia da semana
+                if ((currentHour >= 19 || currentDay === 0 || currentDay === 6) && (currentHour < 24)) {
+                    whatsappURL = "https://wa.me/+553399973342?text=Ol%C3%A1%2C+tenho+interesse+em+um+Cart%C3%A3o+Pr%C3%A9-pago+Netflix";
+                } else {
+                    whatsappURL = "https://wa.me/+553399380674";
+                }
+                
+                window.location.href = whatsappURL;
+            };
+        </script>
+    </div>
+</body>
+</html>
